@@ -60,32 +60,32 @@ to_rub3(Arg) ->
                         {error, badarg}
                 end.
 
-rec_to_rub(#conv_info{type = _, amount = Amount, comission = Comission}) when Amount < 0 ; Comission > 1 ; Comission < 0 ->
+rec_to_rub(#conv_info{type = _, amount = Amount, comission = Commission}) when Amount < 0 ; Commission > 1 ; Commission < 0 ->
         {error, badargs};
-rec_to_rub(#conv_info{type = usd, amount = Amount, comission = Comission}) ->
-	{ok, Amount * 75.5 * (1 - Comission)};
-rec_to_rub(#conv_info{type = euro, amount = Amount, comission = Comission}) ->
-        {ok, Amount * 80 * (1 - Comission)};
-rec_to_rub(#conv_info{type = lari, amount = Amount, comission = Comission}) ->
-        {ok, Amount * 29 * (1 - Comission)};
-rec_to_rub(#conv_info{type = peso, amount = Amount, comission = Comission}) ->
-        {ok, Amount * 3 * (1 - Comission)};
-rec_to_rub(#conv_info{type = krone, amount = Amount, comission = Comission}) ->
-        {ok, Amount * 10 * (1 - Comission)};
+rec_to_rub(#conv_info{type = usd, amount = Amount, comission = Commission}) ->
+	{ok, Amount * 75.5 * (1 - Commission)};
+rec_to_rub(#conv_info{type = euro, amount = Amount, comission = Commission}) ->
+        {ok, Amount * 80 * (1 - Commission)};
+rec_to_rub(#conv_info{type = lari, amount = Amount, comission = Commission}) ->
+        {ok, Amount * 29 * (1 - Commission)};
+rec_to_rub(#conv_info{type = peso, amount = Amount, comission = Commission}) ->
+        {ok, Amount * 3 * (1 - Commission)};
+rec_to_rub(#conv_info{type = krone, amount = Amount, comission = Commission}) ->
+        {ok, Amount * 10 * (1 - Commission)};
 rec_to_rub(#conv_info{type = _, amount = _, comission = _}) ->
         {error, badarg}.
 
-map_to_rub(#{type := _, amount := Amount, comission := Comission}) when Amount < 0 ; Comission < 0 ; Comission > 1 ->
+map_to_rub(#{type := _, amount := Amount, comission := Commission}) when Amount < 0 ; Commission < 0 ; Commission > 1 ->
 	{error, badarg};
-map_to_rub(#{type := usd, amount := Amount, comission := Comission}) ->
-        {ok, Amount * 75.5 * (1 - Comission)};
-map_to_rub(#{type := euro, amount := Amount, comission := Comission}) ->
-        {ok, Amount * 80 * (1 - Comission)};
-map_to_rub(#{type := lari, amount := Amount, comission := Comission}) ->
-        {ok, Amount * 29 * (1 - Comission)};
-map_to_rub(#{type := peso, amount := Amount, comission := Comission}) ->
-        {ok, Amount * 3 * (1 - Comission)};
-map_to_rub(#{type := krone, amount := Amount, comission := Comission}) ->
-        {ok, Amount * 10 * (1 - Comission)};
+map_to_rub(#{type := usd, amount := Amount, comission := Commission}) ->
+        {ok, Amount * 75.5 * (1 - Commission)};
+map_to_rub(#{type := euro, amount := Amount, comission := Commission}) ->
+        {ok, Amount * 80 * (1 - Commission)};
+map_to_rub(#{type := lari, amount := Amount, comission := Commission}) ->
+        {ok, Amount * 29 * (1 - Commission)};
+map_to_rub(#{type := peso, amount := Amount, comission := Commission}) ->
+        {ok, Amount * 3 * (1 - Commission)};
+map_to_rub(#{type := krone, amount := Amount, comission := Commission}) ->
+        {ok, Amount * 10 * (1 - Commission)};
 map_to_rub(#{type := _, amount := _, comission := _}) ->
         {error, badarg}.

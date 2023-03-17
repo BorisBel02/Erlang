@@ -21,6 +21,9 @@ to_rub({Val, _}) ->
 to_rub2(Arg) ->
 	Result =
 		case Arg of
+		{_, Amount} when Amount < 0 ->
+			io:format("Amount of money can not be a negative~n"),
+			{error, badarg};
 		{usd, Amount} ->
 			{ok, 75.5 * Amount};
                 {euro, Amount} ->
@@ -38,6 +41,9 @@ to_rub2(Arg) ->
 	Result.
 to_rub3(Arg) ->
                 case Arg of
+		{_, Amount} when Amount < 0 ->
+			io:format("Amount of money can not be a negative~n"),
+			{error, badarg};
                 {usd, Amount} ->
                         {ok, 75.5 * Amount};
                 {euro, Amount} ->
@@ -52,5 +58,3 @@ to_rub3(Arg) ->
                         io:format("Can’t convert to rub, error ~p~n", [Error]),
                         {error, badarg}
                 end.
-
-

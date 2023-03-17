@@ -31,7 +31,6 @@ bin_to_rec(_) ->
 	throw(conversion_failed).
 
 ipv4_listener() ->
-	timer:sleep(10000),
 	receive
 		{ipv4, From, BinData} ->
 			From ! protocol:bin_to_rec(BinData);

@@ -1,0 +1,63 @@
+2.
+
+1> c(keylist_mgr).
+{ok,keylist_mgr}
+2> cd("../hw8").
+/home/boris/Erlang/hw8
+ok
+3> cd("../hw7").
+/home/boris/Erlang/hw7
+ok
+4> c(keylist).
+{ok,keylist}
+5> {Mgr_pid, Mgr_ref} = keylist_mgr:start().
+{<0.94.0>,#Ref<0.1177817145.1558708227.243243>}
+6> keylist_mgr:start_child(self(), keylist1).
+{<0.80.0>,start_child,keylist1}
+7> keylist_mgr:start_child(self(), keylist2).
+{<0.80.0>,start_child,keylist2}
+8> keylist_mgr:start_child(self(), keylist3).
+{<0.80.0>,start_child,keylist3}
+
+
+keylist3 ! {self(), add, test, 1, "First Test"}.
+{<0.80.0>,add,test,1,"First Test"}
+10> keylist3 ! {self(), is_member, test}.                 
+{<0.80.0>,is_member,test}
+11> keylist3 ! {self(), is_member, tost}.
+{<0.80.0>,is_member,tost}
+12> flush().
+Shell got {ok,<0.96.0>}
+Shell got {ok,<0.98.0>}
+Shell got {ok,<0.100.0>}
+Shell got {ok,1}
+Shell got {true,2}
+Shell got {false,3}
+ok
+
+
+
+
+3.
+
+4> keylist_mgr:start().
+{<0.93.0>,#Ref<0.2396424131.2103705601.30686>}
+5> keylist_mgr:start_child(self(), kl).
+{<0.80.0>,start_child,kl}
+6> flush().
+Shell got {ok,<0.95.0>}
+ok
+7> exit(<0.95.0
+7> >, "ok").
+starttrue
+[kl]
+Process <0.95.0> failed. Reason: "ok"
+8> flush().
+ok
+9> keylist_mgr:get_names(self()).
+{<0.80.0>,get_names}
+10> flush().                      
+Shell got {ok,[]}
+ok
+11> 
+
